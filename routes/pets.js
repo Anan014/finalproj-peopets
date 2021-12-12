@@ -13,7 +13,7 @@ router.post("/add", async(req, res) => {
     }
 });
 
-//get timeline posts
+//get user pets
 router.get("/userpets/:userId", async(req, res) => {
     try {
         const currentUser = await User.findById(req.params.userId);
@@ -22,6 +22,28 @@ router.get("/userpets/:userId", async(req, res) => {
         console.log("userPets", userPets)
 
         res.status(200).json(userPets);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//get all pets for adoption
+router.get("/adopt", async(req, res) => {
+    try {
+        const adoptPets = await Pet.find({ forAdopt: "yes" });
+        console.log("adoptPets", adoptPets)
+        res.status(200).json(adoptPets);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//get all missing pets
+router.get("/missing", async(req, res) => {
+    try {
+        const missingPets = await Pet.find({ isMissing: "yes" });
+        console.log("missingPets", missingPets)
+        res.status(200).json(missingPets);
     } catch (err) {
         res.status(500).json(err);
     }

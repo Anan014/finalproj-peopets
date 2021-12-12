@@ -8,6 +8,7 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const petRoute = require("./routes/pets");
+const serviceRoute = require("./routes/services");
 const multer = require("multer");
 const path = require("path");
 
@@ -46,6 +47,7 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/pets", petRoute);
+app.use("/api/services", serviceRoute);
 
 
 if (process.env.NODE_ENV === 'production') {

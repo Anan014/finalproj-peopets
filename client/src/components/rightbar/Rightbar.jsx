@@ -15,6 +15,7 @@ export default function Rightbar({ user }) {
     const { user: currentUser, dispatch } = useContext(AuthContext);
     const [followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
     const [petadded, setPetadded] = useState(false);
+    const [serviceadded, setServiceadded] = useState(false);
     const [pets, setPets] = useState([]);
 
     const petname = useRef();
@@ -23,6 +24,11 @@ export default function Rightbar({ user }) {
     const age = useRef();
     const isMissing = useRef();
     const forAdopt = useRef();
+
+    const servicename = useRef();
+    const servicetype = useRef();
+    const servicelocation = useRef();
+    const desc = useRef();
 
     const handleClickAddPet = async (e) => {
         e.preventDefault();
@@ -38,6 +44,23 @@ export default function Rightbar({ user }) {
         try {
             await axios.post("/api/pets/add", pet);
             setPetadded(true);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const handleClickAddService = async (e) => {
+        e.preventDefault();
+        const service = {
+            userId: user._id,
+            servicename: servicename.current.value,
+            servicetype: servicetype.current.value,
+            servicelocation: servicelocation.current.value,
+            desc: desc.current.value
+        };
+        try {
+            await axios.post("/api/services/add", service);
+            setServiceadded(true);
         } catch (err) {
             console.log(err);
         }
@@ -147,16 +170,25 @@ export default function Rightbar({ user }) {
                 <hr />
                 <h4 className="rightbarTitle">User Pets</h4>
                 <div className="rightbarPets">
-                {console.log(pets)}
+
 
                 {pets.map(pet => {
                         return <div key={pet._id} style={{ textDecoration: "none", color: "black", textAlign: "center" }}>
                             <div className="rightbarFollowing">
-                                <img
+                            {pet.petanimal === "cat"?
+                            <img
                                     className="rightbarFollowingImg"
-                                    src={PF + "pet/7.jpg"}
+                                    src={pet.petProfilePicture ? PF + pet.petProfilePicture : PF + "pet/5.jpg"}
                                     alt=""
                                 />
+                            :
+                            <img
+                                    className="rightbarFollowingImg"
+                                    src={pet.petProfilePicture ? PF + pet.petProfilePicture : PF + "pet/2.jpg"}
+                                    alt=""
+                                />
+                            }
+
                                 <span className="rightbarFollowingName">{pet.petname}</span>
                                 <span className="rightbarFollowingName">{pet.petanimal}</span>
                                 <span className="rightbarFollowingName">{pet.gender}</span>
@@ -174,11 +206,11 @@ export default function Rightbar({ user }) {
                     </div> */}
                 </div>
                 {user.username === currentUser.username && (
-                    <div className="rightbarAddPets">
+                    <div className="rightbarAddService">
                         <hr />
                         <h4 className="rightbarTitle">Add pet</h4>
                         <form className="addPetBox" onSubmit={handleClickAddPet}>
-                            <input placeholder="Pets Name" requires ref={petname} className="addPetInput" />
+                            <input placeholder="Service Name" requires ref={petname} className="addPetInput" />
                             <input placeholder="Animal" requires ref={petanimal} className="addPetInput" />
                             <input placeholder="Gender" requires ref={gender} className="addPetInput" />
                             <input placeholder="Age" requires ref={age} className="addPetInput" />
@@ -188,6 +220,20 @@ export default function Rightbar({ user }) {
                             <button className="addPetButton" type="submit">Add pet</button>
                         </form>
                         {petadded ? "pet added successfully" : ""}
+                    </div>
+                )}
+                {user.username === currentUser.username && (
+                    <div className="rightbarAddService">
+                        <hr />
+                        <h4 className="rightbarTitle">Add service</h4>
+                        <form className="addServiceBox" onSubmit={handleClickAddService}>
+                            <input placeholder="Service Name" requires ref={servicename} className="addServiceInput" />
+                            <input placeholder="Service Type" requires ref={servicetype} className="addServiceInput" />
+                            <input placeholder="Service Location" requires ref={servicelocation} className="addServiceInput" />
+                            <input placeholder="Description" requires ref={desc} className="addServiceInput" />
+                            <button className="addServiceButton" type="submit">Add Service</button>
+                        </form>
+                        {serviceadded ? "Service added successfully" : ""}
                     </div>
                 )}
             </>

@@ -11,6 +11,9 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Adopt from "./pages/adopt/Adopt";
+import Missing from "./pages/missing/Missing";
+import Hotelpage from "./pages/hotelpage/Hotelpage";
 
 
 function App() {
@@ -33,6 +36,15 @@ function App() {
         </Route>
         <Route exact path="/pet/:username">
           <PetProfile />
+        </Route>
+        <Route exact path="/adopt">
+          <Adopt />
+        </Route>
+        <Route exact path="/missing">
+          <Missing />
+        </Route>
+        <Route exact path="/hotel">
+          <Hotelpage />
         </Route>
       </Switch>
     </Router>

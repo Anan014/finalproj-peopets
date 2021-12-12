@@ -31,7 +31,9 @@
 .sidebarListItem {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    text-decoration: "none";
+    color: "black";
 }
 
 .sidebarIcon {

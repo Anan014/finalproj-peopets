@@ -1,0 +1,24 @@
+.adoptpets {
+    flex: 5.5;
+}
+
+.adoptpetsWrapper {
+    padding: 20px;
+}
+
+.petAdoptBoxs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.petAdoptBox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
