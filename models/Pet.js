@@ -28,6 +28,14 @@ const PetSchema = new mongoose.Schema({
     petProfilePicture: {
         type: String,
         default: "",
+    },
+    isMissing: {
+        type: String,
+        default: "",
+    },
+    forAdopt: {
+        type: String,
+        default: "",
     }
 }, { timestamps: true });
 

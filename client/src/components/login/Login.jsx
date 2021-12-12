@@ -46,7 +46,7 @@ export default function Login() {
                     </form>
                     <div className="loginBoxWrapper">
                         <Link to="/register">
-                            <button className="loginRegisterButton">{isFetching ? "Loading" : "Create a New Account"}</button>
+                            <button className="loginRegisterButton">Create a New Account</button>
                         </Link>
                     </div>
                 </div>

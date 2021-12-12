@@ -13,4 +13,18 @@ router.post("/add", async(req, res) => {
     }
 });
 
+//get timeline posts
+router.get("/userpets/:userId", async(req, res) => {
+    try {
+        const currentUser = await User.findById(req.params.userId);
+        console.log("currentUser", currentUser)
+        const userPets = await Pet.find({ userId: currentUser._id });
+        console.log("userPets", userPets)
+
+        res.status(200).json(userPets);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;
