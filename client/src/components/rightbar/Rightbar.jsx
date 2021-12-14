@@ -44,6 +44,7 @@ export default function Rightbar({ user }) {
         try {
             await axios.post("/api/pets/add", pet);
             setPetadded(true);
+            
         } catch (err) {
             console.log(err);
         }
@@ -61,6 +62,7 @@ export default function Rightbar({ user }) {
         try {
             await axios.post("/api/services/add", service);
             setServiceadded(true);
+        window.location.reload();
         } catch (err) {
             console.log(err);
         }
@@ -210,7 +212,7 @@ export default function Rightbar({ user }) {
                         <hr />
                         <h4 className="rightbarTitle">Add pet</h4>
                         <form className="addPetBox" onSubmit={handleClickAddPet}>
-                            <input placeholder="Service Name" requires ref={petname} className="addPetInput" />
+                            <input placeholder="Pet Name" requires ref={petname} className="addPetInput" />
                             <input placeholder="Animal" requires ref={petanimal} className="addPetInput" />
                             <input placeholder="Gender" requires ref={gender} className="addPetInput" />
                             <input placeholder="Age" requires ref={age} className="addPetInput" />

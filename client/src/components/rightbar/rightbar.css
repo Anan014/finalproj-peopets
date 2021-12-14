@@ -132,3 +132,37 @@
 .rightbarFollowButton:focus {
     outline: none;
 }
+
+.addPetBox {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.addPetInput {
+    margin-bottom: 5px;
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    padding-left: 20px;
+}
+
+.addServiceBox {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.addServiceInput {
+    margin-bottom: 5px;
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    padding-left: 20px;
+}
